@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        
+		<link rel="stylesheet" href="{{ asset("/css/common/common.css") }}" />
+		<link rel="stylesheet" href="{{ asset("/css/website/home/base.css") }}" />
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        {% block base_css %}
+        
+        {% endblock %}
+
+        {% block stylesheets %}
+        {% endblock %}
+        {% block css %}
+        {% endblock %}
+
+        {% block javascripts %}
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
+        {% endblock %}
+    </head>
+    <body id="block_page">
+        
+        {# {{ render(controller(
+        'AppBundle:Base:render_header'
+        )) }} #}
+        {% set donnees = get_website() %}
+        {# {% set website = donnees.website %} #}
+        {% set themes = donnees.themes %}
+        {% set medium = donnees.medium %}
+        {# {{ donnees.website }} #}
+        {# {% set themes = get_website()[1] %} #}
+        {# {% endfor %} #}
+
+            
+        {% block header %}
+            <header>
+            {% if medium %}
+                <div class="logo-title border-box">
+                    <h1 class="texte" id="logo-title-item" data-text=" {{ medium.telephone }} ">{{ medium.telephone }}</h1>
+                    <h1 class="texte" id="logo-title-item1" data-text=" {{ medium.email }} ">{{ medium.email }}</h1>
+                </div>
+            {% else %}
+                <div class="logo-title border-box">
+                    <h1 class="texte" id="logo-title-item" data-text=" telephone  ">01 02 03 04 05 </h1>
+                    <h1 class="texte" id="logo-title-item1" data-text=" email  ">contact@email.com </h1>
+                </div>
+            {% endif %}
+                <div class="menu border-b">
+                    <nav class="nav-bar navbar-expand-lg navbar-light bg-ligh ">
+                        <!--<a class="navbar-brand" href="#">Menu</a>-->
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav"
+                                aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="container-fluid">
+                            <ul id="nav" class="collapse navbar-collapse nav navbar-nav">
+                                <a href="{{ path('app_home') }}">
+                                    <li class="nav-iteme" id="accueil-item">ACCUEIL</li>
+                                </a>
+                                <li class="sepi"></li>
+                                <a href="#">
+                                    <li class="nav-iteme" id="pratique_item1">MA PRATIQUE</li>
+                                </a>
+                                <li class="sepi"></li>
+                                {% for theme in themes %}
+                                    <a href="{{ path('app_theme_show', {'id': theme.id}) }}">
+                                        <li class="nav-iteme" >{{ theme.nom|upper }}</li>
+                                    </a>
+                                    <li class="sepi"></li>
+                                {% endfor %}
+                                <a rel="nofollow" href="#">
+                                    <li class="nav-iteme" id="contact-item">CONTACT
+                                    </li>
+                                </a>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </header>
+        {% endblock %}
+
+
+        {% block content %}
+        {% endblock %}
+
+
+        {% block body %}
+        {% endblock %}
+        
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    {% block foot_js %}
+    {% endblock %}
+
+    {% block footer %}
+    {% endblock %}
+
+    </body>
+</html>

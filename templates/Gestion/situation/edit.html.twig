@@ -1,0 +1,21 @@
+{% extends 'gestion/base.html.twig' %}
+
+{% block title %}Modification Thème{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ asset("/css/gestion/form.css") }}"/>
+{% endblock %}
+
+{% block gestion %}
+    <h1>{{ situation.identifiant }}</h1>
+
+    {{ include('gestion/situation/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+            <div class="links">
+    <a href="{{ path('app_gestion_situation_index') }}">Retour</a>
+            </div>
+
+            <div class="links">
+                <a href="{{ path('app_situation_delete', {'id': situation.id}) }}">Supprimer</a>
+            </div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'gestion/base.html.twig' %}
+
+{% block title %}{{ titre }}{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ asset("/css/gestion/index.css") }}"/>
+{% endblock %}
+
+
+{% block gestion %}
+
+
+    <h1>Gestion des demandes</h1>
+
+    <div class="box">
+        {% for demande in demandes %}
+        {# {{ dump(demande) }} #}
+            <div class="list_item_box">
+                {# <div class="item_box">
+                    <div class="label">id : </div>
+                    <div class="valeur">{{ demande.id }}</div>
+                </div> #}
+                <div class="item_box">
+                    <div class="label">identifiant : </div>
+                    <div class="valeur">{{ demande.identifiant }}</div>
+                </div>
+                <div class="item_box">
+                    <div class="label">texte : </div>
+                    <div class="valeur">{{ demande.texte }}</div>
+                </div>
+                <div class="item_box">
+                    <div class="label">theme : </div>
+                    <div class="valeur">{{ demande.theme.nom }}</div>
+                </div>
+                <div class="item_box">
+                    {# <h3 class="label">id : </h3> #}
+                    <div class="links">
+                        <a href="{{ path('app_gestion_demande_show', {'id': demande.id}) }}">Détails</a>
+                    </div>
+                    <div class="links">
+                        <a href="{{ path('app_gestion_demande_edit', {'id': demande.id}) }}">Modifier</a>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div>
+                <div colspan="8">no records found</div>
+            </div>
+        {% endfor %}
+    </div>
+        
+
+    <h4 class="links">
+        <a href="{{ path('app_demande_new') }}">Nouvelle demande</a>
+    </h4>
+
+{% endblock %}

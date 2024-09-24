@@ -1,0 +1,21 @@
+{% extends 'gestion/base.html.twig' %}
+
+{% block title %}Modification Thème{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ asset("/css/gestion/form.css") }}"/>
+{% endblock %}
+
+{% block gestion %}
+    <h1>{{ demande.identifiant }}</h1>
+
+    {{ include('gestion/demande/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+            <div class="links">
+    <a href="{{ path('app_gestion_demande_index') }}">Retour</a>
+            </div>
+
+            <div class="links">
+                <a href="{{ path('app_demande_delete', {'id': demande.id}) }}">Supprimer</a>
+            </div>
+{% endblock %}

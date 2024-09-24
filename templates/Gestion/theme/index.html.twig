@@ -1,0 +1,69 @@
+{% extends 'gestion/base.html.twig' %}
+
+{% block title %}{{ titre }}{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ asset("/css/gestion/index.css") }}"/>
+{% endblock %}
+
+
+{% block gestion %}
+
+
+    <h1>Gestion des thèmes</h1>
+
+    <div class="box">
+        {% for theme in themes %}
+        {# {{ dump(theme) }} #}
+            <div class="list_item_box">
+                {# <div class="item_box">
+                    <div class="label">id : </div>
+                    <div class="valeur">{{ theme.id }}</div>
+                </div> #}
+                <div class="item_box">
+                    <div class="label">nom : </div>
+                    <div class="valeur">{{ theme.nom }}</div>
+                </div>
+                <div class="item_box">
+                    <div class="label">titre de page : </div>
+                    <div class="valeur">{{ theme.titreDePage }}</div>
+                </div>
+                <div class="item_box">
+                    <div class="label">titre : </div>
+                    <div class="valeur">{{ theme.titre }}</div>
+                </div>
+                <div class="item_box">
+                    <div class="label">sous-titre : </div>
+                    <div class="valeur">{{ theme.sousTitre }}</div>
+                </div>
+                <div class="item_box">
+                    <div class="label">description : </div>
+                    <div class="valeur">{{ theme.description }}</div>
+                </div>
+                <div class="item_box">
+                    <div class="label">identfiant : </div>
+                    <div class="valeur">{{ theme.identifiant }}</div>
+                </div>
+                <div class="item_box">
+                    {# <h3 class="label">id : </h3> #}
+                    <div class="links">
+                        <a href="{{ path('app_gestion_theme_show', {'id': theme.id}) }}">Détails</a>
+                    </div>
+                    <div class="links">
+                        <a href="{{ path('app_gestion_theme_edit', {'id': theme.id}) }}">Modifier</a>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div>
+                <div colspan="8">no records found</div>
+            </div>
+        {% endfor %}
+    </div>
+        
+
+    <h4 class="links">
+        <a href="{{ path('app_theme_new') }}">Nouveau thème</a>
+    </h4>
+
+{% endblock %}

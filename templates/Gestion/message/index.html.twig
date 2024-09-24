@@ -1,0 +1,57 @@
+{% extends 'gestion/base.html.twig' %}
+
+{% block title %}{{ titre }}{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ asset("/css/gestion/index.css") }}"/>
+{% endblock %}
+
+
+{% block gestion %}
+
+
+    <h1>Gestion des messages</h1>
+
+    <div class="box">
+        {% for message in messages %}
+        {# {{ dump(message) }} #}
+            <div class="list_item_box">
+                {# <div class="item_box">
+                    <div class="label">id : </div>
+                    <div class="valeur">{{ message.id }}</div>
+                </div> #}
+                <div class="item_box">
+                    <div class="label">identifiant : </div>
+                    <div class="valeur">{{ message.identifiant }}</div>
+                </div>
+                <div class="item_box">
+                    <div class="label">texte : </div>
+                    <div class="valeur">{{ message.texte }}</div>
+                </div>
+                <div class="item_box">
+                    <div class="label">situation : </div>
+                    <div class="valeur">{{ message.situation.identifiant }}</div>
+                </div>
+                <div class="item_box">
+                    {# <h3 class="label">id : </h3> #}
+                    <div class="links">
+                        <a href="{{ path('app_gestion_message_show', {'id': message.id}) }}">Détails</a>
+                    </div>
+                    <div class="links">
+                        <a href="{{ path('app_gestion_message_edit', {'id': message.id}) }}">Modifier</a>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div>
+                <div colspan="8">no records found</div>
+            </div>
+        {% endfor %}
+    </div>
+        
+
+    <h4 class="links">
+        <a href="{{ path('app_message_new') }}">Nouvelle message</a>
+    </h4>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'gestion/base.html.twig' %}
+
+{% block title %}{{ titre }}{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ asset("/css/gestion/index.css") }}"/>
+{% endblock %}
+
+
+{% block gestion %}
+
+
+    <h1>Gestion des situations</h1>
+
+    <div class="box">
+        {% for situation in situations %}
+        {# {{ dump(situation) }} #}
+            <div class="list_item_box">
+                {# <div class="item_box">
+                    <div class="label">id : </div>
+                    <div class="valeur">{{ situation.id }}</div>
+                </div> #}
+                <div class="item_box">
+                    <div class="label">identifiant : </div>
+                    <div class="valeur">{{ situation.identifiant }}</div>
+                </div>
+                <div class="item_box">
+                    <div class="label">texte : </div>
+                    <div class="valeur">{{ situation.texte }}</div>
+                </div>
+                <div class="item_box">
+                    <div class="label">Demande : </div>
+                    <div class="valeur">{{ situation.demande.identifiant }}</div>
+                </div>
+                <div class="item_box">
+                    {# <h3 class="label">id : </h3> #}
+                    <div class="links">
+                        <a href="{{ path('app_gestion_situation_show', {'id': situation.id}) }}">Détails</a>
+                    </div>
+                    <div class="links">
+                        <a href="{{ path('app_gestion_situation_edit', {'id': situation.id}) }}">Modifier</a>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div>
+                <div colspan="8">no records found</div>
+            </div>
+        {% endfor %}
+    </div>
+        
+
+    <h4 class="links">
+        <a href="{{ path('app_situation_new') }}">Nouvelle situation</a>
+    </h4>
+
+{% endblock %}

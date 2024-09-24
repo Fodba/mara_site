@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Website index{% endblock %}
+
+{% block body %}
+    <h1>Website index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Base_url</th>
+                <th>Name</th>
+                <th>Website_header</th>
+                <th>Website_description</th>
+                <th>Logo</th>
+                <th>Logo_texte</th>
+                <th>Admin_email</th>
+                <th>Admin_phone</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for website in websites %}
+            <tr>
+                <td>{{ website.id }}</td>
+                <td>{{ website.baseUrl }}</td>
+                <td>{{ website.name }}</td>
+                <td>{{ website.websiteHeader }}</td>
+                <td>{{ website.websiteDescription }}</td>
+                <td>{{ website.logo }}</td>
+                <td>{{ website.logoTexte }}</td>
+                <td>{{ website.adminEmail }}</td>
+                <td>{{ website.adminPhone }}</td>
+                <td>
+                    <a href="{{ path('app_website_show', {'id': website.id}) }}">show</a>
+                    <a href="{{ path('app_website_edit', {'id': website.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_website_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,150 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ theme.nom }}{% endblock %}
+
+{% block body %}
+    <h1>Theme</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ theme.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ theme.nom }}</td>
+            </tr>
+            <tr>
+                <th>Titre_de_page</th>
+                <td>{{ theme.titreDePage }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ theme.titre }}</td>
+            </tr>
+            <tr>
+                <th>Sous_titre</th>
+                <td>{{ theme.sousTitre }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ theme.description }}</td>
+            </tr>
+            <tr>
+                <th>Identifiant</th>
+                <td>{{ theme.identifiant }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_theme_index') }}">back to list</a>
+
+    <a href="{{ path('app_theme_edit', {'id': theme.id}) }}">edit</a>
+
+    {{ include('theme/_delete_form.html.twig') }}
+{% endblock %}
+
+
+{% block css %}
+    <link rel="stylesheet" href="{{ asset("/css/website/consultation/theme.css") }}"/>
+    {# <link rel="stylesheet" href="{% static 'mara/css/website/consultation/theme.css' %}"/>
+    <!--<link rel="stylesheet" href="{% static 'mara/slick/slick.css' %}"/>
+    <link rel="stylesheet" href="{% static 'mara/slick/slick-theme.css' %}"/>--> #}
+{% endblock %}
+
+
+{% block content %}
+    {# {% for situation in situations %}
+    <ul>
+        {% for sit in situation %}
+            <li>{{sit.texte}}</li>
+        {% endfor %}
+        <hr>
+    </ul>
+    {% endfor %} #}
+<section class=" theme-section">
+    <div class="border-box " id="theme-description">
+        <h1 id="titre-theme">{{ theme.titre|upper }}</h1>
+        <hr>
+        <h2 id="sous-titre-theme">{{ theme.soustitre|upper }}</h2>
+        <span id="texte-theme">{{ theme.description|raw }}</span>
+    </div>
+    <div class="theme">
+    {# {{dump(situations)}} #}
+    {% for data in situations %}
+        {# {% for vari, value in data %}
+            {% set  tab[vari] = [value] %}
+        {% endfor %}
+        {{dump(demande)}} #}
+        <div class="demandes border-b" data-id="{{ data.demande.identifiant }}">
+                <a>
+            <div class="demande">
+            <h2 class="texte_inv">{{ data.demande.texte|raw|upper }}</h2>
+                {# <div class="btn_demande" id="{{ demande.identifiant }}"><span>En savoir plus</span></div> #}
+
+                <!--start button, nothing above this is necessary -->
+                <div class="svg-wrapper">
+                  <svg xmlns="http://www.w3.org/2000/svg">
+                    <rect  id="shape" height="40" width="150" />
+                    <div id="text">
+                        <div class="btn_demande texte" id="{{ data.demande.identifiant }}"><span class="spot"></span>EN SAVOIR PLUS</div>
+                    </div>
+                  </svg>
+                </div>
+            </div>
+                </a>
+        </div>
+    {% endfor %}
+    </div>
+        {% for data in situations %}
+            <div id="situations-{{ data.demande.identifiant}}" class="situations">
+            {% for situation in data.situations %}
+                {% if situation.message|length > 0 %}
+                <div class='btn_situation' id='{{ situation.situation.identifiant}}'>{{ situation.situation.texte }}</div>
+                {% endif %}
+            {% endfor %}
+            </div>
+        {% endfor %}
+    
+    {% for data in situations %}
+            {% for situation in data.situations %}
+                {# {{ dump(situation.message[0])}} #}
+                {# {% for sit in situation %} #}
+                {# {{ dump(situation)}} #}
+                {% if situation.message|length > 0 %}
+                {# <div id="" class=""> #}
+                <div id="block-{{ situation.situation.identifiant}}" class="block_message border-b animated zoomIn">
+                    <div id="messages">
+                        <div class='btn_message' id='{{ situation.message[0].identifiant }}'><span class='btn-text'>{{situation.message[0].texte|raw}}</span></div>
+                    </div>
+                </div>
+                {% endif %}
+                {# <div id="messages"> #}
+                {# {% endfor %} #}
+            {% endfor %}
+    {# {{dump(data)}} #}
+    {# {% for message in data.situations %} #}
+                <!--<div>
+                    <h3>Pour plus d'infos ou</h3>
+                    <h3>Pour une première consultation</h3>
+                    <h3>Par téléphone ou WhatsApp</h3>
+                </div>-->
+            <!--<div id="btn-contact" class="">
+                <div class="texte">{{ medium.telephone }}</div>
+            </div>-->
+    {# {% endfor %} #}
+    {% endfor %}
+    <h1>---------------------------------------------</h1>
+    {# {{dump(situations)}} #}
+</section>
+{% endblock %}
+
+{% block foot_js %}
+    <script type="text/javascript" src="{{ asset("/slick/slick.min.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/js/theme.js") }}"></script>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+

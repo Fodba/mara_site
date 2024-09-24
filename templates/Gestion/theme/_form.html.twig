@@ -1,0 +1,40 @@
+{{ form_start(form) }}
+    {# {{ form_widget(form) }} #}
+    
+    <div class="row">
+        <div class="col">
+            {# {{ form_row(form.nom) }} #}
+            {{ form_label(form.nom) }}
+            {{ form_widget(form.nom) }}
+        </div>
+        <div class="col">
+            {# {{ form_row(form.nom) }} #}
+            {{ form_label(form.titre) }}
+            {{ form_widget(form.titre) }}
+        </div>
+        <div class="col">
+            {# {{ form_row(form.nom) }} #}
+            {{ form_label(form.titre_de_page) }}
+            {{ form_widget(form.titre_de_page) }}
+        </div>
+        <div class="col">
+            {# {{ form_row(form.nom) }} #}
+            {{ form_label(form.sous_titre) }}
+            {{ form_widget(form.sous_titre) }}
+        </div>
+        <div class="col">
+            {# {{ form_row(form.nom) }} #}
+            {{ form_label(form.description) }}
+            {{ form_widget(form.description) }}
+        </div>
+        <div class="col">
+            {# {{ form_row(form.nom) }} #}
+            {{ form_label(form.identifiant) }}
+            {{ form_widget(form.identifiant) }}
+        </div>
+        {# <div class="col" id="some-custom-id">
+            {{ form_row(form.titre) }}
+        </div> #}
+    </div>
+    <button class="btn links">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

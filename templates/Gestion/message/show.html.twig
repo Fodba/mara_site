@@ -1,0 +1,61 @@
+{% extends 'gestion/base.html.twig' %}
+
+{% block title %}{{ message.identifiant }}{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ asset("/css/gestion/show.css") }}"/>
+{% endblock %}
+
+{% block gestion %}
+    <h1>{{ message.identifiant }}</h1>
+
+
+
+    <div class="list_attribute_box">
+        {# <div class="attribute_box">
+            <div class="label">id : </div>
+            <div class="valeur">{{ message.id }}</div>
+        </div> #}
+        <div class="attribute_box">
+            <div class="label">identifiant : </div>
+            <div class="valeur">{{ message.identifiant }}</div>
+        </div>
+        <div class="attribute_box">
+            <div class="label">texte : </div>
+            <div class="valeur">{{ message.texte }}</div>
+        </div>
+        <div class="attribute_box">
+            <div class="label">situation : </div>
+            <div class="valeur">{{ message.situation.identifiant }}</div>
+        </div>
+        <div class="attribute_box">
+            {# <h3 class="label">id : </h3> #}
+            <div class="links">
+                {# <a href="{{ path('app_gestion_message_show', {'id': message.id}) }}">Détails</a> #}
+                <a href="{{ path('app_gestion_message_index') }}">Retour</a>
+            </div>
+            <div class="links">
+                <a href="{{ path('app_gestion_message_edit', {'id': message.id}) }}">Modifier</a>
+            </div>
+            <div class="links">
+                <a href="{{ path('app_message_delete', {'id': message.id}) }}">Supprimer</a>
+            </div>
+        </div>
+    </div>
+
+
+    {# <a href="{{ path('app_gestion_message_edit', {'id': message.id}) }}">edit</a> #}
+{% endblock %}
+
+
+
+
+
+{% block foot_js %}
+    <script type="text/javascript" src="{{ asset("/slick/slick.min.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/js/message.js") }}"></script>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+

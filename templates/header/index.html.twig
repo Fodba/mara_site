@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Header index{% endblock %}
+
+{% block body %}
+    <h1>Header index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Texte1</th>
+                <th>Texte2</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for header in headers %}
+            <tr>
+                <td>{{ header.id }}</td>
+                <td>{{ header.texte1 }}</td>
+                <td>{{ header.texte2 }}</td>
+                <td>
+                    <a href="{{ path('app_header_show', {'id': header.id}) }}">show</a>
+                    <a href="{{ path('app_header_edit', {'id': header.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_header_new') }}">Create new</a>
+{% endblock %}

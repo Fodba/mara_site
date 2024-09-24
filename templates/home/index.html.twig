@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ asset("/css/website/home/home.css") }}"/>
+    <link rel="stylesheet" href="{{ asset("/slick/slick.css") }}"/>
+    <link rel="stylesheet" href="{{ asset("/slick/slick-theme.css") }}"/>
+{% endblock %}
+
+
+{% block content %}
+    <div class="page-wrapper">
+        <section class="block-medium">
+            {# <div class="medium">
+                <img class="medium-photo" alt="{{ medium.phototexte }}" src="{{ medium.photo }}"/>
+                <div class="medium-info">
+                    <h3>{{ medium.telephone }}</h3>
+                    <h3>{{ medium.email }}</h3>
+                </div>
+            </div> #}
+
+            <div class="medium-bio border-b">
+                <div class="mef1">
+                    <h1 class="texte_inv">Le cabinet de voyance, marabout, medium est ouvert tous les jours:</h1>
+                    <div class="bio">
+                    {% if headers %}
+                    {% for header in headers %}
+                        <div class="bio-item">
+                            <div class="texte1 texte_inv"><p>{{ header.texte1|upper }}</p></div>
+                            <div class="texte2 texte_inv"><h2>{{ header.texte2|upper }}</h2></div>
+                        </div>
+                    {% endfor %}
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        {% if medium %}
+            <section class="block-medium-bio border-b">
+            <div class="texte_inv">{{ medium.biographie|raw }}</div>
+            </section>
+            {# {% for header in articles %}
+            <section class="block-medium-bio border-b">
+                    <div class="texte1 texte_inv"><p>{{ header.titre|upper }}</p></div>
+                    <div class="texte2 texte_inv"><h2>{{ header.texte|raw }}</h2></div>
+                </section>
+            {% endfor %} #}
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+
+{% block foot_js %}
+    <script type="text/javascript" src="{{ asset("/slick/slick.min.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/js/home.js") }}">
+    </script>
+{% endblock %}

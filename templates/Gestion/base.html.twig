@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Admin{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        
+            <link rel="stylesheet" href="{{ asset("/css/gestion/c_base.css") }}" />
+            <link rel="stylesheet" href="{{ asset("/css/gestion/g_base.css") }}" />
+            <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+                integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        {% block base_css %}
+		
+        {% endblock %}
+
+        {% block stylesheets %}
+        {% endblock %}
+        {% block css %}
+            {# <link rel="stylesheet" href="{{ asset("/css/gestion/home.css") }}"/>
+            <link rel="stylesheet" href="{{ asset("/slick/slick.css") }}"/>
+            <link rel="stylesheet" href="{{ asset("/slick/slick-theme.css") }}"/> #}
+        {% endblock %}
+
+        {% block javascripts %}
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
+        {% endblock %}
+    </head>
+    <body id="block_page">
+        
+        {# {{ render(controller(
+        'AppBundle:Base:render_header'
+        )) }} #}
+        {% set donnees = get_website() %}
+        {# {% set website = donnees.website %} #}
+        {% set themes = donnees.themes %}
+        {% set medium = donnees.medium %}
+        {# {% dump(medium)  %} #}
+        {# {{ donnees.website }} #}
+        {# {% set themes = get_website()[1] %} #}
+        {# {% endfor %} #}
+
+            
+    
+{% block header %}
+    <header>
+    {% if medium %}
+        <div class="logo-titre border-boxe">
+            <h1 class="texte" id="logo-titre-item" data-text=" {{ medium.telephone }} ">{{ medium.telephone }}</h1>
+            <h1 class="texte" id="logo-titre-item1" data-text=" {{ medium.email }} ">{{ medium.email }}</h1>
+        </div>
+    {% else %}
+        <div class="logo-titre border-boxe">
+            <h1 class="texte" id="logo-titre-item" data-text=" telephone  ">telephone </h1>
+            <h1 class="texte" id="logo-titre-item1" data-text=" email  ">email </h1>
+        </div>
+    {% endif %}
+    
+        <div class="menu">
+            <nav class="nav-bar navbar-expand-lg navbar-light bg-ligh ">
+                <!--<a class="navbar-brand" href="#">Menu</a>-->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav"
+                        aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="container-fluid">
+                    <ul id="navigation" class="collapse navbar-collapse nav navbar-nav border-boxe">
+                        <a href="{{ path('app_gestion_medium_index') }}">
+                            <li class="nav-iteme" id="accueil-item">MEDIUM</li>
+                        </a>
+                        {# <li class="sepi"></li> #}
+                        <a href="{{ path('app_gestion_theme_index') }}">
+                            <li class="nav-iteme" id="pratique_item1">THEMES</li>
+                        </a>
+                        {# <li class="sepi"></li> #}
+                        <a href="{{ path('app_gestion_demande_index') }}">
+                            <li class="nav-iteme" id="pratique_item1">DEMANDES</li>
+                        </a>
+                        {# <li class="sepi"></li> #}
+                        <a href="{{ path('app_gestion_situation_index') }}">
+                            <li class="nav-iteme" id="pratique_item1">SITUATIONS</li>
+                        </a>
+                        {# <li class="sepi"></li> #}
+                        <a href="{{ path('app_gestion_message_index') }}">
+                            <li class="nav-iteme" id="pratique_item1">MESSAGES</li>
+                        </a>
+                        {# <li class="sepi"></li>
+                        {% for theme in themes %}
+                            <a href="{{ path('app_theme_show', {'id': theme.id}) }}">
+                                <li class="nav-iteme" >{{ theme.nom|upper }}</li>
+                            </a>
+                            <li class="sepi"></li>
+                        {% endfor %}
+                        <a rel="nofollow" href="#">
+                            <li class="nav-iteme" id="contact-item">CONTACT
+                            </li> #}
+                        </a>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+{% endblock %}
+
+
+
+{% block content %}
+    <div id="page-wrapper">
+        <h1 class="admin_page">Interface d'administration</h1>
+
+            
+    {% block gestion %}
+            <div class="border-b">
+                <div class="">
+                    <div class="">
+                        <div class="">
+                            <div class="texte1 texte_inv"><p>Pour ajouter ou gérer les thèmes:</p></div>
+                            <div class="texte2 texte_inv"><h2>CLIQUER SUR L'ONGLET "THEMES"</h2></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-b">
+                <div class="">
+                    <div class="">
+                        <div class="">
+                            <div class="texte1 texte_inv"><p>Pour ajouter ou gérer les demandes:</p></div>
+                            <div class="texte2 texte_inv"><h2>CLIQUER SUR L'ONGLET "DEMANDES"</h2></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-b">
+                <div class="">
+                    <div class="">
+                        <div class="">
+                            <div class="texte1 texte_inv"><p>Pour ajouter ou gérer les situations:</p></div>
+                            <div class="texte2 texte_inv"><h2>CLIQUER SUR L'ONGLET "SITUATIONS"</h2></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-b">
+                <div class="">
+                    <div class="">
+                        <div class="">
+                            <div class="texte1 texte_inv"><p>Pour ajouter ou gérer les messages:</p></div>
+                            <div class="texte2 texte_inv"><h2>CLIQUER SUR L'ONGLET "MESSAGES"</h2></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    {% endblock %}
+
+    </div>
+{% endblock %}
+
+
+{% block foot_js %}
+    {# <script type="text/javascript" src="{{ asset("/slick/slick.min.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/js/home.js") }}">
+    </script> #}
+{% endblock %}
+
+
+{% block footer %}
+{% endblock %}
+    </body>
+</html>

@@ -1,0 +1,61 @@
+{% extends 'gestion/base.html.twig' %}
+
+{% block title %}{{ situation.identifiant }}{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ asset("/css/gestion/show.css") }}"/>
+{% endblock %}
+
+{% block gestion %}
+    <h1>{{ situation.identifiant }}</h1>
+
+
+
+    <div class="list_attribute_box">
+        {# <div class="attribute_box">
+            <div class="label">id : </div>
+            <div class="valeur">{{ situation.id }}</div>
+        </div> #}
+        <div class="attribute_box">
+            <div class="label">identifiant : </div>
+            <div class="valeur">{{ situation.identifiant }}</div>
+        </div>
+        <div class="attribute_box">
+            <div class="label">texte : </div>
+            <div class="valeur">{{ situation.texte }}</div>
+        </div>
+        <div class="attribute_box">
+            <div class="label">demande : </div>
+            <div class="valeur">{{ situation.demande.identifiant }}</div>
+        </div>
+        <div class="attribute_box">
+            {# <h3 class="label">id : </h3> #}
+            <div class="links">
+                {# <a href="{{ path('app_gestion_situation_show', {'id': situation.id}) }}">Détails</a> #}
+                <a href="{{ path('app_gestion_situation_index') }}">Retour</a>
+            </div>
+            <div class="links">
+                <a href="{{ path('app_gestion_situation_edit', {'id': situation.id}) }}">Modifier</a>
+            </div>
+            <div class="links">
+                <a href="{{ path('app_situation_delete', {'id': situation.id}) }}">Supprimer</a>
+            </div>
+        </div>
+    </div>
+
+
+    {# <a href="{{ path('app_gestion_situation_edit', {'id': situation.id}) }}">edit</a> #}
+{% endblock %}
+
+
+
+
+
+{% block foot_js %}
+    <script type="text/javascript" src="{{ asset("/slick/slick.min.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/js/situation.js") }}"></script>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+

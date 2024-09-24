@@ -1,0 +1,73 @@
+{% extends 'gestion/base.html.twig' %}
+
+{% block title %}{{ theme.nom }}{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ asset("/css/gestion/show.css") }}"/>
+{% endblock %}
+
+{% block gestion %}
+    <h1>{{ theme.nom }}</h1>
+
+
+
+    <div class="list_attribute_box">
+        {# <div class="attribute_box">
+            <div class="label">id : </div>
+            <div class="valeur">{{ theme.id }}</div>
+        </div> #}
+        <div class="attribute_box">
+            <div class="label">nom : </div>
+            <div class="valeur">{{ theme.nom }}</div>
+        </div>
+        <div class="attribute_box">
+            <div class="label">titre de page : </div>
+            <div class="valeur">{{ theme.titreDePage }}</div>
+        </div>
+        <div class="attribute_box">
+            <div class="label">titre : </div>
+            <div class="valeur">{{ theme.titre }}</div>
+        </div>
+        <div class="attribute_box">
+            <div class="label">sous-titre : </div>
+            <div class="valeur">{{ theme.sousTitre }}</div>
+        </div>
+        <div class="attribute_box">
+            <div class="label">description : </div>
+            <div class="valeur">{{ theme.description }}</div>
+        </div>
+        <div class="attribute_box">
+            <div class="label">identfiant : </div>
+            <div class="valeur">{{ theme.identifiant }}</div>
+        </div>
+        <div class="attribute_box">
+            {# <h3 class="label">id : </h3> #}
+            <div class="links">
+                {# <a href="{{ path('app_gestion_theme_show', {'id': theme.id}) }}">Détails</a> #}
+                <a href="{{ path('app_gestion_theme_index') }}">Retour</a>
+            </div>
+            <div class="links">
+                <a href="{{ path('app_gestion_theme_edit', {'id': theme.id}) }}">Modifier</a>
+            </div>
+            <div class="links">
+                <a href="{{ path('app_theme_delete', {'id': theme.id}) }}">Supprimer</a>
+            </div>
+        </div>
+    </div>
+
+
+    {# <a href="{{ path('app_gestion_theme_edit', {'id': theme.id}) }}">edit</a> #}
+{% endblock %}
+
+
+
+
+
+{% block foot_js %}
+    <script type="text/javascript" src="{{ asset("/slick/slick.min.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/js/theme.js") }}"></script>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+

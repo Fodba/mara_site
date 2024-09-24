@@ -1,0 +1,132 @@
+{% extends 'gestion/base.html.twig' %}
+
+{# {% block title %}Medium index{% endblock %} #}
+
+
+{% block title %}{{ titre }}{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ asset("/css/gestion/index.css") }}"/>
+{% endblock %}
+
+
+{% block gestion %}
+
+
+    <h1>Gestion du médium</h1>
+
+    <div class="box">
+        {% for medium in media %}
+        {# {{ dump(theme) }} #}
+            <div class="list_item_box">
+                {# <div class="item_box">
+                    <div class="label">id : </div>
+                    <div class="valeur">{{ theme.id }}</div>
+                </div> #}
+                <div class="item_box">
+                    <div class="label">Nom : </div>
+                    <div class="valeur">{{ medium.nom }}</div>
+                </div>
+                <div class="item_box">
+                    <div class="label">Telephone : </div>
+                    <div class="valeur">{{ medium.telephone }}</div>
+                </div>
+                <div class="item_box">
+                    <div class="label">Email : </div>
+                    <div class="valeur">{{ medium.email }}</div>
+                </div>
+                <div class="item_box">
+                    <div class="label">Photo : </div>
+                    <div class="valeur">{{ medium.photo }}</div>
+                </div>
+                <div class="item_box">
+                    <div class="label">Texte de la photo : </div>
+                    <div class="valeur">{{ medium.photoTexte }}</div>
+                </div>
+                <div class="item_box">
+                    <div class="label">biographie : </div>
+                    <div class="valeur">{{ medium.biographie }}</div>
+                </div>
+                <div class="item_box">
+                    <div class="label">pratique : </div>
+                    <div class="valeur">{{ medium.pratique }}</div>
+                </div>
+                <div class="item_box">
+                    {# <h3 class="label">id : </h3> #}
+                    <div class="links">
+                        <a href="{{ path('app_gestion_medium_show', {'id': medium.id}) }}">Détails</a>
+                    </div>
+                    <div class="links">
+                        <a href="{{ path('app_gestion_medium_edit', {'id': medium.id}) }}">Modifier</a>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div>
+                <div colspan="8">no records found</div>
+            </div>
+        {% endfor %}
+    </div>
+        
+
+    <h4 class="links">
+        <a href="{{ path('app_gestion_medium_new') }}">Nouveau médium</a>
+    </h4>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% block body %}
+    <h1>Medium index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Telephone</th>
+                <th>Email</th>
+                <th>Photo</th>
+                <th>Photo_texte</th>
+                <th>Biographie</th>
+                <th>Pratique</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for medium in media %}
+            <tr>
+                <td>{{ medium.id }}</td>
+                <td>{{ medium.nom }}</td>
+                <td>{{ medium.telephone }}</td>
+                <td>{{ medium.email }}</td>
+                <td>{{ medium.photo }}</td>
+                <td>{{ medium.photoTexte }}</td>
+                <td>{{ medium.biographie }}</td>
+                <td>{{ medium.pratique }}</td>
+                <td>
+                    <a href="{{ path('app_medium_show', {'id': medium.id}) }}">show</a>
+                    <a href="{{ path('app_medium_edit', {'id': medium.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_medium_new') }}">Create new</a>
+{% endblock %}
